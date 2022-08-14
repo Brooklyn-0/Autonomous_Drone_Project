@@ -48,18 +48,20 @@ def direction_adjustment_stop():
 # if more than half probabilty > 0.7, return false otherwise
 # The input is the result of yolov5
 def detect_target(results):
-    for i in results.pandas().xyxy[0].values:
-        if i[6] == 'target':
-            if i[4] > 0.7:
-                return True
+    if results.pandas().xyxy[0].values:
+        for i in results.pandas().xyxy[0].values:
+            if i[6] == 'target':
+                if i[4] > 0.7:
+                    return True
     return False
 
 # detect stop sign, following similar rules as above
 def detect_stop(results):
-    for i in results.pandas().xyxy[0].values:
-        if i[6] == 'stop':
-            if i[4] > 0.7:
-                return True
+    if results.pandas().xyxy[0].values:
+        for i in results.pandas().xyxy[0].values:
+            if i[6] == 'stop':
+                if i[4] > 0.7:
+                    return True
     return False
 
 # return the percentage of target in the image
